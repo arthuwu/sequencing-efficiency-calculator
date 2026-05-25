@@ -1,0 +1,1 @@
+﻿Parser p = new(@"D:\Downloads\EuroScope20260328.txt");
