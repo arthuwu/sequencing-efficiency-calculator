@@ -22,6 +22,8 @@ public class Parser
         for (int l = 2; l < _logfile.Count(); l += 3)
         {
             string line = _logfile[l];
+            if (line.Count() == 0) continue;
+
             if (line[0] == '@') // position update
             {
                 HandlePositionUpdate(line);
@@ -87,7 +89,19 @@ public class Parser
             Aircrafts[callsign].ADEP = adep;
             Aircrafts[callsign].ADES = ades;
             Aircrafts[callsign].ATYP = atyp;
-            Aircrafts[callsign].RouteString = route;
+
+            if (Aircrafts[callsign].RouteString != route)
+            {
+                Aircrafts[callsign].RouteString = route;
+                foreach (Route r in _routes)
+                {
+                    if (Aircrafts[callsign].RouteString.Contains(r.FplHas))
+                    {
+                        Aircrafts[callsign].Route = r;
+                        return;
+                    }
+                }
+            }
         }
     }
 }

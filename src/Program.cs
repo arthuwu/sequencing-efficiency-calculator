@@ -1,1 +1,1 @@
-﻿Parser p = new(@"D:\Downloads\EuroScope20260328.txt");
+﻿Parser p = new(@"D:\Downloads\EuroScope20260612 MOL Test.txt");
